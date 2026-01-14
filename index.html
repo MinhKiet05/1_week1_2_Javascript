@@ -10,9 +10,67 @@
     <input type="number" value="1.69" id="Mheight"><br>
     <input type="number" value="92" id="Jmass"><br>
     <input type="number" value="1.95" id="Jheight"><br>   
-    <button onclick="cal()">Cal</button>
+    <button onclick="cal1()">Cal</button>
+    <hr>
+    Dolphins score <br>
+    <input type="number" value="96" id="Dscore1"><br>
+    <input type="number" value="108" id="Dscore2"><br>
+    <input type="number" value="89" id="Dscore3"><br>
+    Koalas score<br>
+    <input type="number" value="88" id="Kscore1"><br>
+    <input type="number" value="91" id="Kscore2"><br>
+    <input type="number" value="110" id="Kscore3"><br>
+    <button onclick="cal2()">Cal</button>
+
     <script>
-        function cal() {
+        function cal2(){    
+            var Dscore1 = Number(document.getElementById('Dscore1').value);
+            var Dscore2 = Number(document.getElementById('Dscore2').value);
+            var Dscore3 = Number(document.getElementById('Dscore3').value);
+
+            var Kscore1 = Number(document.getElementById('Kscore1').value);
+            var Kscore2 = Number(document.getElementById('Kscore2').value);
+            var Kscore3 = Number(document.getElementById('Kscore3').value);
+
+            var totalD = 3;
+            var totalK = 3;
+            if(Dscore1<100){
+                Dscore1 = 0;
+                totalD--;
+            }
+            if(Kscore1<100){
+                Kscore1 = 0;
+                totalK--;
+            }
+            if(Dscore2<100){
+                Dscore2 = 0;
+                totalD--;
+            }
+            if(Kscore2<100){
+                Kscore2 = 0;
+                totalK--;
+            }
+            if(Dscore3<100){
+                Dscore3 = 0;
+                totalD--;
+            }
+            if(Kscore3<100){
+                Kscore3 = 0;
+                totalK--;
+            }
+            var avrD = (Dscore1 + Dscore2 + Dscore3)/totalD;
+            var avrK = (Kscore1 + Kscore2 + Kscore3)/totalK;
+
+            if(avrD>avrK){
+                console.log('Dolphins win');
+            }else if(avrD<avrK){
+                console.log('Koalas win');
+            }else{
+                console.log('Hue');
+            }
+        }
+
+        function cal1() {
             var Mmass = document.getElementById('Mmass').value;
             var Mheight = document.getElementById('Mheight').value;
             var Jmass = document.getElementById('Jmass').value;
