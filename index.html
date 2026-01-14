@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>Part 1</h1>
     <input type="number" value="78" id="Mmass"> <br>
     <input type="number" value="1.69" id="Mheight"><br>
     <input type="number" value="92" id="Jmass"><br>
@@ -21,8 +22,16 @@
     <input type="number" value="91" id="Kscore2"><br>
     <input type="number" value="110" id="Kscore3"><br>
     <button onclick="cal2()">Cal</button>
-
+    <hr>
+    <input type="number" value="430" id="bill"><br>
+    <button onclick="cal3()">Cal</button>
     <script>
+        function cal3(){
+            var bill = Number(document.getElementById('bill').value);
+            tip = (bill >= 50 && bill <= 300) ? bill * 0.15 : bill * 0.2;
+            console.log('The bill was '+ bill +', the tip was '+tip+', and the total value '+ (bill+tip));
+            
+        }
         function cal2(){    
             var Dscore1 = Number(document.getElementById('Dscore1').value);
             var Dscore2 = Number(document.getElementById('Dscore2').value);
