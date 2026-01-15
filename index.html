@@ -6,26 +6,39 @@
     <title>Document</title>
 </head>
 <body>
-    <script>
-        const printForecast = function (arr) {
-        let str = '... ';
+  <header>
+    <p class="message">Start guessing...</p>
+  </header>
 
-        for (let i = 0; i < arr.length; i++) {
-            str += `${arr[i]}°C in ${i + 1} days ... `;
-        }
+  <main>
+    <div class="number">?</div>
 
-        console.log(str);
-        };
+    <section>
+      <input type="number" class="guess" />
+      <button class="check">Check!</button>
+      <button class="again">Again!</button>
+    </section>
 
+    <p>Score: <span class="score">20</span></p>
+  </main>
 
-        const data1 = [17, 21, 23];
-        console.log('Data 1:');
-        printForecast(data1);
+  <script>
+    document.querySelector('.again').addEventListener('click', function () {
+        
+        score = 20;
+        secretNumber = Math.trunc(Math.random() * 20) + 1;
+        console.log(secretNumber);
+        
+        document.querySelector('.message').textContent = 'Start guessing...';
+        document.querySelector('.score').textContent = score;
+        document.querySelector('.number').textContent = '?';
+        document.querySelector('.guess').value = '';
 
-        const data2 = [12, 5, -5, 0, 4];
-        console.log('Data 2:');
-        printForecast(data2);
-    </script>
-    
+        document.querySelector('body').style.backgroundColor = '#222';
+        document.querySelector('.number').style.width = '15rem';
+    });
+
+  </script>
 </body>
+
 </html>
