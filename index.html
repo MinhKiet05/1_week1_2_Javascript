@@ -25,7 +25,45 @@
     <hr>
     <input type="number" value="430" id="bill"><br>
     <button onclick="cal3()">Cal</button>
+    <br><br>
+    <h1>Part 2</h1>
+    Dolphins score <br>
+    <input type="number" value="96" id="Dscore1"><br>
+    <input type="number" value="108" id="Dscore2"><br>
+    <input type="number" value="89" id="Dscore3"><br>
+    Koalas score<br>
+    <input type="number" value="88" id="Kscore1"><br>
+    <input type="number" value="91" id="Kscore2"><br>
+    <input type="number" value="110" id="Kscore3"><br>
+    <button onclick="cal4()">Cal</button>
+    <hr>
     <script>
+
+        
+        const calcAverage = (s1, s2, s3) => (s1 + s2 + s3) / 3;
+        const checkWinner = function (avgDolphins, avgKoalas) {
+            if (avgDolphins >= 2 * avgKoalas) {
+                console.log(`Dolphins win (${avgDolphins.toFixed(1)} vs. ${avgKoalas.toFixed(1)})`);
+            } else if (avgKoalas >= 2 * avgDolphins) {
+                console.log(`Koalas win (${avgKoalas.toFixed(1)} vs. ${avgDolphins.toFixed(1)})`);
+            } else {
+                console.log("No team wins.");
+            }
+        };
+        function cal4() {
+            const d1 = Number(document.getElementById('Dscore1').value);
+            const d2 = Number(document.getElementById('Dscore2').value);
+            const d3 = Number(document.getElementById('Dscore3').value);
+
+            const k1 = Number(document.getElementById('Kscore1').value);
+            const k2 = Number(document.getElementById('Kscore2').value);
+            const k3 = Number(document.getElementById('Kscore3').value);
+
+            const avgD = calcAverage(d1, d2, d3);
+            const avgK = calcAverage(k1, k2, k3);
+
+            checkWinner(avgD, avgK);
+        }
         function cal3(){
             var bill = Number(document.getElementById('bill').value);
             tip = (bill >= 50 && bill <= 300) ? bill * 0.15 : bill * 0.2;
