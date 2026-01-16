@@ -7,24 +7,21 @@
 </head>
 <body>
   <script>
-    const checkDogs = function (dogsJulia, dogsKate) {
-    const dogsJuliaCorrected = dogsJulia.slice();
-    dogsJuliaCorrected.splice(0, 1);
-    dogsJuliaCorrected.splice(-2);
+    const calcAverageHumanAge = function (ages) {
+      const humanAges = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
 
-    const allDogs = dogsJuliaCorrected.concat(dogsKate);
+      const adults = humanAges.filter(age => age >= 18);
 
-    allDogs.forEach(function (age, i) {
-      if (age >= 3) {
-        console.log(`Dog number ${i + 1} is an adult, and is ${age} years old`);
-      } else {
-        console.log(`Dog number ${i + 1} is still a puppy 🐶`);
-      }
-    });
-  };
+      const average = adults.reduce((acc, age) => acc + age, 0) / adults.length;
 
-  checkDogs([5, 2, 4, 1, 15, 8, 3], [16, 6, 10, 5, 6, 1, 4]);
+      return average;
+    };
 
+    const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+    const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+
+    console.log(`Average 1: ${avg1.toFixed(2)}`); 
+    console.log(`Average 2: ${avg2.toFixed(2)}`); 
   </script>
 </body>
 
