@@ -7,40 +7,53 @@
 </head>
 <body>
   <script>
-    const Car = function (make, speed) {
-      this.make = make;
-      this.speed = speed;
-    };
+    class CarCl {
+      // 1. Khởi tạo thuộc tính
+      constructor(make, speed) {
+        this.make = make;
+        this.speed = speed;
+      }
 
-    // 2. Triển khai phương thức 'accelerate' (tăng tốc) vào prototype
-    Car.prototype.accelerate = function () {
-      this.speed += 10;
-      console.log(`${this.make} is going at ${this.speed} km/h`);
-    };
+      // 2. Phương thức tăng tốc (Accelerate)
+      accelerate() {
+        this.speed += 10;
+        console.log(`${this.make} đang chạy với tốc độ ${this.speed} km/h`);
+      }
 
-    // 3. Triển khai phương thức 'brake' (phanh) vào prototype
-    Car.prototype.brake = function () {
-      this.speed -= 5;
-      console.log(`${this.make} is going at ${this.speed} km/h`);
-    };
+      // 3. Phương thức phanh (Brake)
+      brake() {
+        this.speed -= 5;
+        console.log(`${this.make} đang chạy với tốc độ ${this.speed} km/h`);
+      }
 
-    // 4. Tạo 2 đối tượng Car và thử nghiệm
-    const bmw = new Car('BMW', 120);
-    const mercedes = new Car('Mercedes', 95);
+      // 4. Getter: Trả về tốc độ theo đơn vị mi/h (Dặm/giờ)
+      get speedUS() {
+        return this.speed / 1.6;
+      }
 
-    // Thử nghiệm với BMW
-    console.log('--- Testing BMW ---');
-    bmw.accelerate(); 
-    bmw.accelerate(); 
-    bmw.brake();      
-    bmw.accelerate(); 
+      // 5. Setter: Nhận vào mi/h nhưng quy đổi ngược lại km/h để lưu trữ
+      set speedUS(speed) {
+        this.speed = speed * 1.6;
+      }
+    }
 
-    // Thử nghiệm với Mercedes
-    console.log('--- Testing Mercedes ---');
-    mercedes.brake();     
-    mercedes.brake();      
-    mercedes.accelerate();
-    mercedes.brake();   
+
+    const ford = new CarCl('Ford', 120);
+
+    console.log(`--- Tốc độ ban đầu của ${ford.make} ---`);
+    console.log(`Tốc độ (km/h): ${ford.speed}`);
+    console.log(`Tốc độ (mi/h): ${ford.speedUS}`);
+
+    console.log('--- Thử nghiệm tăng tốc & phanh ---');
+    ford.accelerate(); 
+    ford.accelerate(); 
+    ford.brake();      
+
+    console.log('--- Thử nghiệm Setter (đặt tốc độ 50 mi/h) ---');
+    ford.speedUS = 50; 
+    console.log(`${ford.make} sau khi set 50 mi/h: ${ford.speed} km/h`);
+
+    ford.accelerate();
   </script>
 </body>
 
