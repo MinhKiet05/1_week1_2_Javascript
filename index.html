@@ -7,53 +7,55 @@
 </head>
 <body>
   <script>
-    class CarCl {
-      // 1. Khởi tạo thuộc tính
-      constructor(make, speed) {
-        this.make = make;
-        this.speed = speed;
-      }
+    // --- LỚP CHA (CAR) ---
+    const Car = function (make, speed) {
+      this.make = make;
+      this.speed = speed;
+    };
 
-      // 2. Phương thức tăng tốc (Accelerate)
-      accelerate() {
-        this.speed += 10;
-        console.log(`${this.make} đang chạy với tốc độ ${this.speed} km/h`);
-      }
+    Car.prototype.brake = function () {
+      this.speed -= 5;
+      console.log(`${this.make} đang chạy chậm lại: ${this.speed} km/h`);
+    };
 
-      // 3. Phương thức phanh (Brake)
-      brake() {
-        this.speed -= 5;
-        console.log(`${this.make} đang chạy với tốc độ ${this.speed} km/h`);
-      }
+    // --- LỚP CON (EV) ---
+    // 1. Khởi tạo Constructor EV
+    const EV = function (make, speed, charge) {
+      // Kế thừa các thuộc tính từ Car
+      Car.call(this, make, speed);
+      this.charge = charge;
+    };
 
-      // 4. Getter: Trả về tốc độ theo đơn vị mi/h (Dặm/giờ)
-      get speedUS() {
-        return this.speed / 1.6;
-      }
+    // 2. Thiết lập kế thừa Prototype (EV kế thừa từ Car)
+    EV.prototype = Object.create(Car.prototype);
 
-      // 5. Setter: Nhận vào mi/h nhưng quy đổi ngược lại km/h để lưu trữ
-      set speedUS(speed) {
-        this.speed = speed * 1.6;
-      }
-    }
+    // 3. Phương thức chargeBattery
+    EV.prototype.chargeBattery = function (chargeTo) {
+      this.charge = chargeTo;
+      console.log(`${this.make} đã sạc pin lên: ${this.charge}%`);
+    };
 
+    // 4. Phương thức accelerate (Định nghĩa lại - Polymorphism)
+    EV.prototype.accelerate = function () {
+      this.speed += 20;
+      this.charge--;
+      console.log(
+        `${this.make} đang chạy với tốc độ ${this.speed} km/h, pin còn lại: ${this.charge}%`
+      );
+    };
 
-    const ford = new CarCl('Ford', 120);
+    EV.prototype.constructor = EV;
 
-    console.log(`--- Tốc độ ban đầu của ${ford.make} ---`);
-    console.log(`Tốc độ (km/h): ${ford.speed}`);
-    console.log(`Tốc độ (mi/h): ${ford.speedUS}`);
+    const tesla = new EV('Tesla', 120, 23);
 
-    console.log('--- Thử nghiệm tăng tốc & phanh ---');
-    ford.accelerate(); 
-    ford.accelerate(); 
-    ford.brake();      
+    console.log('--- Trạng thái ban đầu ---');
+    console.log(tesla);
 
-    console.log('--- Thử nghiệm Setter (đặt tốc độ 50 mi/h) ---');
-    ford.speedUS = 50; 
-    console.log(`${ford.make} sau khi set 50 mi/h: ${ford.speed} km/h`);
-
-    ford.accelerate();
+    console.log('--- Thử nghiệm các phương thức ---');
+    tesla.chargeBattery(90);  
+    tesla.accelerate();       
+    tesla.brake();            
+    tesla.accelerate();       
   </script>
 </body>
 
