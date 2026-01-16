@@ -7,55 +7,71 @@
 </head>
 <body>
   <script>
-    // --- LỚP CHA (CAR) ---
-    const Car = function (make, speed) {
-      this.make = make;
-      this.speed = speed;
-    };
+    // 1. Lớp cha CarCl
+    class CarCl {
+      constructor(make, speed) {
+        this.make = make;
+        this.speed = speed;
+      }
 
-    Car.prototype.brake = function () {
-      this.speed -= 5;
-      console.log(`${this.make} đang chạy chậm lại: ${this.speed} km/h`);
-    };
+      // Cập nhật phương thức brake để có thể nối chuỗi
+      brake() {
+        this.speed -= 5;
+        console.log(`${this.make} đang chạy chậm lại: ${this.speed} km/h`);
+        return this; // Cho phép nối chuỗi
+      }
 
-    // --- LỚP CON (EV) ---
-    // 1. Khởi tạo Constructor EV
-    const EV = function (make, speed, charge) {
-      // Kế thừa các thuộc tính từ Car
-      Car.call(this, make, speed);
-      this.charge = charge;
-    };
+      accelerate() {
+        this.speed += 10;
+        console.log(`${this.make} đang chạy: ${this.speed} km/h`);
+        return this;
+      }
+    }
 
-    // 2. Thiết lập kế thừa Prototype (EV kế thừa từ Car)
-    EV.prototype = Object.create(Car.prototype);
+    // 2. Lớp con EVCl kế thừa từ CarCl
+    class EVCl extends CarCl {
+      // 2. Đặt thuộc tính charge là tư nhân (Private)
+      #charge;
 
-    // 3. Phương thức chargeBattery
-    EV.prototype.chargeBattery = function (chargeTo) {
-      this.charge = chargeTo;
-      console.log(`${this.make} đã sạc pin lên: ${this.charge}%`);
-    };
+      constructor(make, speed, charge) {
+        // Gọi constructor của lớp cha
+        super(make, speed);
+        this.#charge = charge;
+      }
 
-    // 4. Phương thức accelerate (Định nghĩa lại - Polymorphism)
-    EV.prototype.accelerate = function () {
-      this.speed += 20;
-      this.charge--;
-      console.log(
-        `${this.make} đang chạy với tốc độ ${this.speed} km/h, pin còn lại: ${this.charge}%`
-      );
-    };
+      chargeBattery(chargeTo) {
+        this.#charge = chargeTo;
+        console.log(`${this.make} đã sạc pin lên: ${this.#charge}%`);
+        return this; // Cho phép nối chuỗi
+      }
 
-    EV.prototype.constructor = EV;
+      // Ghi đè phương thức accelerate
+      accelerate() {
+        this.speed += 20;
+        this.#charge--;
+        console.log(
+          `${this.make} đang chạy với tốc độ ${this.speed} km/h, pin còn lại: ${this.#charge}%`
+        );
+        return this; // Cho phép nối chuỗi
+      }
+    }
 
-    const tesla = new EV('Tesla', 120, 23);
+    // --- THỬ NGHIỆM VỚI DỮ LIỆU TEST ---
+    // Data car 1: 'Rivian' going at 120 km/h, with a charge of 23%
+    const rivian = new EVCl('Rivian', 120, 23);
 
     console.log('--- Trạng thái ban đầu ---');
-    console.log(tesla);
+    console.log(rivian);
 
-    console.log('--- Thử nghiệm các phương thức ---');
-    tesla.chargeBattery(90);  
-    tesla.accelerate();       
-    tesla.brake();            
-    tesla.accelerate();       
+    // 3. Thực hiện nối chuỗi phương thức (Method Chaining)
+    console.log('--- Thử nghiệm Chaining ---');
+    rivian
+      .accelerate()      
+      .accelerate()      
+      .brake()           
+      .chargeBattery(90) 
+      .accelerate()     
+      .brake();          
   </script>
 </body>
 
