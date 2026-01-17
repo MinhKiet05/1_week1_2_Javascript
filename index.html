@@ -23,12 +23,32 @@
         });
       });
     };
+    wait = function (seconds) {
+      return new Promise(function (resolve) {
+        setTimeout(resolve, seconds * 1000);
+      });
+    };
+    let currentImg;
 
-    createImage('./img/DOMAndEvents.png') 
+    createImage('./img/DOMAndEvents.png')
       .then(img => {
-        console.log('Image 1 loaded successfully');
+        currentImg = img;
+        console.log('Image 1 loaded');
+        return wait(2);
       })
-      .catch(err => console.error(err));
+      .then(() => {
+        currentImg.style.display = 'none';
+        return createImage('./img/DeveloperSkills&EditorSetup_Challenge1.png');
+      })
+      .then(img => {
+        currentImg = img;
+        console.log('Image 2 loaded');
+        return wait(2);
+      })
+      .then(() => {
+        currentImg.style.display = 'none';
+      })
+      .catch(err => console.error(`Lỗi: ${err.message}`));
   </script>
 </body>
 
