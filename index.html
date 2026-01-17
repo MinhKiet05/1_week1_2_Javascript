@@ -28,27 +28,25 @@
         setTimeout(resolve, seconds * 1000);
       });
     };
-    let currentImg;
 
-    createImage('./img/DOMAndEvents.png')
-      .then(img => {
-        currentImg = img;
+    const loadNPause = async function () {
+      try {
+        let img = await createImage('./img/Part1_Challenge1&2.png');
         console.log('Image 1 loaded');
-        return wait(2);
-      })
-      .then(() => {
-        currentImg.style.display = 'none';
-        return createImage('./img/DeveloperSkills&EditorSetup_Challenge1.png');
-      })
-      .then(img => {
-        currentImg = img;
+        await wait(2);
+        img.style.display = 'none';
+
+        img = await createImage('./img/Part1_Challenge3.png');
         console.log('Image 2 loaded');
-        return wait(2);
-      })
-      .then(() => {
-        currentImg.style.display = 'none';
-      })
-      .catch(err => console.error(`Lỗi: ${err.message}`));
+        await wait(2);
+        img.style.display = 'none';
+        
+      } catch (err) {
+        console.error(`Lỗi: ${err.message}`);
+      }
+    };
+
+    loadNPause();
   </script>
 </body>
 
