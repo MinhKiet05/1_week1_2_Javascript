@@ -1,0 +1,35 @@
+.alert {
+  padding: 14px 18px;
+  border-radius: 8px;
+  margin-top: 16px;
+  font-weight: 500;
+  color: #fff;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Success */
+.alert-success {
+  background-color: #2ecc71;
+}
+
+/* Warning */
+.alert-warning {
+  background-color: #f39c12;
+}
+
+/* Error */
+.alert-error {
+  background-color: #e74c3c;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
