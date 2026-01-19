@@ -1,0 +1,31 @@
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Desktop: 3 cột */
+  gap: 20px;
+  padding: 40px;
+  color: black;
+}
+
+/* Card đơn giản */
+.product-card {
+  padding: 20px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .product-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .product-list {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+}
