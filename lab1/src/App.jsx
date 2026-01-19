@@ -1,29 +1,19 @@
 import { useState } from 'react'
 import './App.css'
-import Button from './components/Button/Button.jsx';
-import Alert from './components/Alert/Alert.jsx';
+import LoginForm from './components/loginForm/LoginForm.jsx'
 function App() {
-  const [alertType, setAlertType] = useState(null);
+  const [open, setOpen] = useState(false);
   return (
     <>
-      <div className="app">
-      <div className="btn-group">
-        <Button type="success" onClick={() => setAlertType("success")}>
-          Success
-        </Button>
+      <div style={{ padding: "40px" }}>
+      <button onClick={() => setOpen(true)}>
+        Open Login
+      </button>
 
-        <Button type="primary" onClick={() => setAlertType("warning")}>
-          Warning
-        </Button>
-
-        <Button type="danger" onClick={() => setAlertType("error")}>
-          Error
-        </Button>
-      </div>
-
-      <Alert
-        type={alertType}
-        message={`This is a ${alertType} alert`}
+      <LoginForm
+        isOpen={open}
+        type="primary"
+        onClose={() => setOpen(false)}
       />
     </div>
     </>
