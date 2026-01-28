@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" value="430" id="bill"><br>
+    <button onclick="cal3()">Cal</button>
+    <script>
+        function cal3(){
+            var bill = Number(document.getElementById('bill').value);
+            tip = (bill >= 50 && bill <= 300) ? bill * 0.15 : bill * 0.2;
+            console.log('The bill was '+ bill +', the tip was '+tip+', and the total value '+ (bill+tip));
+            
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Dolphins score <br>
+    <input type="number" value="96" id="Dscore1"><br>
+    <input type="number" value="108" id="Dscore2"><br>
+    <input type="number" value="89" id="Dscore3"><br>
+    Koalas score<br>
+    <input type="number" value="88" id="Kscore1"><br>
+    <input type="number" value="91" id="Kscore2"><br>
+    <input type="number" value="110" id="Kscore3"><br>
+    <button onclick="cal2()">Cal</button>
+
+    <script>
+        function cal2() {
+            var d1 = Number(document.getElementById('Dscore1').value);
+            var d2 = Number(document.getElementById('Dscore2').value);
+            var d3 = Number(document.getElementById('Dscore3').value);
+
+            var k1 = Number(document.getElementById('Kscore1').value);
+            var k2 = Number(document.getElementById('Kscore2').value);
+            var k3 = Number(document.getElementById('Kscore3').value);
+
+            const avgDolphins = (d1 + d2 + d3) / 3;
+            const avgKoalas = (k1 + k2 + k3) / 3;
+
+            console.log(`Average Dolphins: ${avgDolphins.toFixed(2)}`);
+            console.log(`Average Koalas: ${avgKoalas.toFixed(2)}`);
+
+            if (avgDolphins > avgKoalas && avgDolphins >= 100) {
+                console.log('Dolphins win!');
+            } else if (avgKoalas > avgDolphins && avgKoalas >= 100) {
+                console.log('Koalas win!');
+            } else if (avgDolphins === avgKoalas && avgDolphins >= 100 && avgKoalas >= 100) {
+                console.log('It is a draw!');
+            } else {
+                console.log('No one wins.');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" value="78" id="Mmass"> <br>
+    <input type="number" value="1.69" id="Mheight"><br>
+    <input type="number" value="92" id="Jmass"><br>
+    <input type="number" value="1.95" id="Jheight"><br>   
+    <button onclick="cal1()">Cal</button>
+    <script>
+        
+        function cal1() {
+            var Mmass = document.getElementById('Mmass').value;
+            var Mheight = document.getElementById('Mheight').value;
+            var Jmass = document.getElementById('Jmass').value;
+            var Jheight = document.getElementById('Jheight').value;
+
+            var MBMI = Mmass/(Mheight*Mheight);
+            var JBMI = Jmass/(Jheight*Jheight);
+
+            console.log(MBMI);
+            console.log(JBMI);
+
+            // markHigherBMI = MBMI>JBMI;
+            // if(markHigherBMI){
+            //     console.log('Mark\'s BMI('+ MBMI +') is higher than John\'s! (' + JBMI +')');
+            // }else {
+            //     console.log('John\'s! (' + JBMI +') is higher than Mark\'s BMI('+ MBMI +')');
+            // }
+        }
+    </script>
+</body>
+</html>
